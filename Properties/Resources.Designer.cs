@@ -89,5 +89,25 @@ namespace wheelOfFortune.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wheel__1_ {
+            get {
+                object obj = ResourceManager.GetObject("wheel__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap White_Arrow_PNG_Image_HD {
+            get {
+                object obj = ResourceManager.GetObject("White_Arrow_PNG_Image_HD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

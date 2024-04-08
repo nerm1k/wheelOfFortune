@@ -30,8 +30,6 @@ namespace wheelOfFortune
 
         //private Dictionary<int, int> bets;
 
-
-
         public Form1()
         {
             InitializeComponent();
@@ -51,8 +49,8 @@ namespace wheelOfFortune
 
             public WheelOfFortune(int playersCount, int turnsCount)
             {
-                tempWheelPic = new Bitmap(Properties.Resources.wheel);
-                wheelPic = new Bitmap(Properties.Resources.wheel);
+                tempWheelPic = new Bitmap(Properties.Resources.wheel__1_);
+                wheelPic = new Bitmap(Properties.Resources.wheel__1_);
                 states = new int[] { 1, 2, 20, 1, 5, 2, 1, 10, 1, 2, 1, 5, 1, 40, 1, 2, 1, 2, 1, 5, 1, 10, 1, 2, 1, 2, 1, 5, 1, 20, 1, 2, 1, 2, 1, 10, 2, 5, 1, 2, 40, 2, 1, 2, 1, 5, 1, 2, 1, 10, 1, 5, 1, 2 };
                 angle = 0.0f;
                 this.playersCount = playersCount;
@@ -150,7 +148,7 @@ namespace wheelOfFortune
                 }
 
 
-                label1.Text = "Победное число: " + Convert.ToString(wheel.states[wheel.state]);
+                //label1.Text = "Победное число: " + Convert.ToString(wheel.states[wheel.state]);
             }
             else
             {
@@ -163,7 +161,11 @@ namespace wheelOfFortune
 
                 int result = wheel.states[wheel.state];
 
-                label8.Text = "Выиграл сектор: " + result;
+                label1.Visible = true;
+                label1.Text = "Выиграл сектор x" + result;
+
+                label11.Visible = true;
+                label11.Text = "";
 
                 foreach (Player player in wheel.playersList)
                 {
@@ -172,9 +174,10 @@ namespace wheelOfFortune
                         if(bet.Key == result)
                         {
                             player.balance += bet.Value * result;
+                            label11.Text += $"Игрок №{player.id} выиграл {bet.Value * result} \n";
                         }
                     }
-                    label10.Text += "id: " + player.id + " .money: " + player.balance.ToString() + "\n";
+                    //label10.Text += "id: " + player.id + " .money: " + player.balance.ToString() + "\n";
                     foreach (var key in player.bets.Keys.ToList())
                     {
                         player.bets[key] = 0;
@@ -186,8 +189,12 @@ namespace wheelOfFortune
                     int winnerId = -1;
                     int winnerBalance = -1;
 
+                    label10.Visible = true;
+                    label10.Text = "";
+
                     foreach (Player player in wheel.playersList)
                     {
+                        label10.Text += $"Баланс игрока №{player.id}: {player.balance} \n";
                         if (player.balance > winnerBalance)
                         {
                             winnerId = player.id;
@@ -195,11 +202,11 @@ namespace wheelOfFortune
                         }
                     }
                 
-                    label14.Text = $"winner: {winnerId}\n. balance: {winnerBalance}\n. test. ИГРА ОКОНЧЕНА";
+                    label14.Text = $"Победитель: Игрок №{winnerId}.\nБаланс: {winnerBalance}.\nИГРА ОКОНЧЕНА";
 
                     button10.Visible = true;
 
-                    label1.Visible = false;
+                    //label1.Visible = false;
                     label2.Visible = false;
                     label3.Visible = false;
                     label4.Visible = false;
@@ -207,8 +214,11 @@ namespace wheelOfFortune
                     label6.Visible = false;
                     label7.Visible = false;
                     label8.Visible = false;
-                    label11.Visible = false;
+                    //label11.Visible = false;
                     label12.Visible = false;
+                    label14.Visible = true;
+                    label15.Visible = false;
+                    label16.Visible = false;
                     textBox1.Visible = false;
                     button1.Visible = false;
                     button2.Visible = false;
@@ -247,8 +257,11 @@ namespace wheelOfFortune
                 label5.Text = "Ставка на х10: ";
                 label6.Text = "Ставка на х20: ";
                 label7.Text = "Ставка на х40: ";
+                
 
                 currentPlayerIndex = 0;
+                label8.Text = $"Баланс: {wheel.playersList[currentPlayerIndex].balance}";
+                label16.Text = $"Игрок №{wheel.playersList[currentPlayerIndex].id}";
 
                 button1.Visible = false;
                 label2.Visible = true;
@@ -257,6 +270,8 @@ namespace wheelOfFortune
                 label5.Visible = true;
                 label6.Visible = true;
                 label7.Visible = true;
+                label8.Visible = true;
+                label16.Visible = true;
                 textBox1.Visible = true;
                 button2.Visible = true;
                 button3.Visible = true;
@@ -332,14 +347,16 @@ namespace wheelOfFortune
                 int bet = int.Parse(textBox1.Text);
                 if (currentPlayer.balance < bet)
                 {
-                    label12.Text = "Недостаточно денег на балансе";
+                    label12.Visible = true;
                     return;
                 }
                 currentPlayer.bets[1] += bet;
                 currentPlayer.balance -= bet;
                 label2.Text = "Ставка на х1: " + currentPlayer.bets[1];
+                label8.Text = $"Баланс: {currentPlayer.balance}";
+                label16.Text = $"Игрок №{currentPlayer.id}";
                 textBox1.Clear();
-                label12.Text = "";
+                label12.Visible = false;
             }
             else
             {
@@ -355,14 +372,16 @@ namespace wheelOfFortune
                 int bet = int.Parse(textBox1.Text);
                 if (currentPlayer.balance < bet)
                 {
-                    label12.Text = "Недостаточно денег на балансе";
+                    label12.Visible = true;
                     return;
                 }  
                 currentPlayer.bets[2] += bet;
                 currentPlayer.balance -= bet;
                 label3.Text = "Ставка на х2: " + currentPlayer.bets[2];
+                label8.Text = $"Баланс: {currentPlayer.balance}";
+                label16.Text = $"Игрок №{currentPlayer.id}";
                 textBox1.Clear();
-                label12.Text = "";
+                label12.Visible = false;
             }
             else
             {
@@ -379,14 +398,16 @@ namespace wheelOfFortune
                 int bet = int.Parse(textBox1.Text);
                 if (currentPlayer.balance < bet)
                 {
-                    label12.Text = "Недостаточно денег на балансе";
+                    label12.Visible = true;
                     return;
                 }
                 currentPlayer.bets[5] += bet;
                 currentPlayer.balance -= bet;
                 label4.Text = "Ставка на х5: " + currentPlayer.bets[5];
+                label8.Text = $"Баланс: {currentPlayer.balance}";
+                label16.Text = $"Игрок №{currentPlayer.id}";
                 textBox1.Clear();
-                label12.Text = "";
+                label12.Visible = false;
             }
             else
             {
@@ -402,14 +423,16 @@ namespace wheelOfFortune
                 int bet = int.Parse(textBox1.Text);
                 if (currentPlayer.balance < bet)
                 {
-                    label12.Text = "Недостаточно денег на балансе";
+                    label12.Visible = true;
                     return;
                 }
                 currentPlayer.bets[10] += bet;
                 currentPlayer.balance -= bet;
                 label5.Text = "Ставка на х10: " + currentPlayer.bets[10];
+                label8.Text = $"Баланс: {currentPlayer.balance}";
+                label16.Text = $"Игрок №{currentPlayer.id}";
                 textBox1.Clear();
-                label12.Text = "";
+                label12.Visible = false;
             }
             else
             {
@@ -425,14 +448,16 @@ namespace wheelOfFortune
                 int bet = int.Parse(textBox1.Text);
                 if (currentPlayer.balance < bet)
                 {
-                    label12.Text = "Недостаточно денег на балансе";
+                    label12.Visible = true;
                     return;
                 }
                 currentPlayer.bets[20] += bet;
                 currentPlayer.balance -= bet;
                 label6.Text = "Ставка на х20: " + currentPlayer.bets[20];
+                label8.Text = $"Баланс: {currentPlayer.balance}";
+                label16.Text = $"Игрок №{currentPlayer.id}";
                 textBox1.Clear();
-                label12.Text = "";
+                label12.Visible = false;
             }
             else
             {
@@ -448,14 +473,16 @@ namespace wheelOfFortune
                 int bet = int.Parse(textBox1.Text);
                 if (currentPlayer.balance < bet)
                 {
-                    label12.Text = "Недостаточно денег на балансе";
+                    label12.Visible = true;
                     return;
                 }
                 currentPlayer.bets[40] += bet;
                 currentPlayer.balance -= bet;
                 label7.Text = "Ставка на х40: " + currentPlayer.bets[40];
+                label8.Text = $"Баланс: {currentPlayer.balance}";
+                label16.Text = $"Игрок №{currentPlayer.id}";
                 textBox1.Clear();
-                label12.Text = "";
+                label12.Visible = false;
             }
             else
             {
@@ -475,13 +502,15 @@ namespace wheelOfFortune
                 wheelTimer.Tick += wheelTimer_Tick;
                 wheel = new WheelOfFortune(playersCount, turnsCount);
 
+                Player currentPlayer = wheel.playersList[0];
+
                 label9.Visible = false;
                 label13.Visible = false;
                 textBox2.Visible = false;
                 textBox3.Visible = false;
                 button8.Visible = false;
 
-                label1.Visible = true;
+                //label1.Visible = true;
                 label2.Visible = true;
                 label3.Visible = true;
                 label4.Visible = true;
@@ -489,10 +518,14 @@ namespace wheelOfFortune
                 label6.Visible = true;
                 label7.Visible = true;
                 label8.Visible = true;
-                label10.Visible = true;
-                label11.Visible = true;
-                label12.Visible = true;
-                label14.Visible = true;
+                label8.Text = $"Баланс: {currentPlayer.balance}";
+                //label10.Visible = true;
+                //label11.Visible = true;
+                //label12.Visible = true;
+                //label14.Visible = true;
+                label15.Visible = true;
+                label16.Visible = true;
+                label16.Text = $"Игрок №{currentPlayer.id}";
                 textBox1.Visible = true;
                 button2.Visible = true;
                 button3.Visible = true;
@@ -508,7 +541,6 @@ namespace wheelOfFortune
 
         private void button9_Click(object sender, EventArgs e)
         {
-            //Player currentPlayer = wheel.playersList[currentPlayerIndex];
             //currentPlayer.bets = new Dictionary<int, int>{
             //    { 1, currentPlayer.bet_x1},
             //    { 2, currentPlayer.bet_x2},
@@ -517,15 +549,20 @@ namespace wheelOfFortune
             //    { 20, currentPlayer.bet_x20},
             //    { 40, currentPlayer.bet_x40}
             //};
-            currentPlayerIndex++;
-            if (currentPlayerIndex == wheel.playersCount){
+            label12.Visible = false;
+            if (currentPlayerIndex + 1 == wheel.playersCount){
                 button1.Visible = true;
+                label1.Visible = false;
                 label2.Visible = false;
                 label3.Visible = false;
                 label4.Visible = false;
                 label5.Visible = false;
                 label6.Visible = false;
                 label7.Visible = false;
+                label8.Visible = false;
+                label11.Visible = false;
+                label16.Visible = false;
+                label15.Visible = false;
                 textBox1.Visible = false;
                 button2.Visible = false;
                 button3.Visible = false;
@@ -533,8 +570,11 @@ namespace wheelOfFortune
                 button5.Visible = false;
                 button6.Visible = false;
                 button7.Visible = false;
-                button9.Visible = false;
+                button9.Visible = false;           
+                return;
             };
+            currentPlayerIndex++;
+            Player currentPlayer = wheel.playersList[currentPlayerIndex];
             textBox1.Clear();
             label2.Text = "Ставка на х1: ";
             label3.Text = "Ставка на х2: ";
@@ -542,19 +582,21 @@ namespace wheelOfFortune
             label5.Text = "Ставка на х10: ";
             label6.Text = "Ставка на х20: ";
             label7.Text = "Ставка на х40: ";
+            label8.Text = $"Баланс: {currentPlayer.balance}";
+            label16.Text = $"Игрок №{currentPlayer.id}";
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-            Form newForm = new Form1(); 
+            //Form newForm = new Form1(); 
 
-            this.Hide();
+            //this.Hide();
 
-            newForm.Show();
+            //newForm.Show();
 
 
             //ИЛИ
-            //Application.Restart();
+            Application.Restart();
         }
     }
 
