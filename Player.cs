@@ -31,9 +31,9 @@ namespace wheelOfFortune
                 };
         }
 
-        public void MakeBet(int numberBet ,int bet)
+        public void MakeBet(int sector ,int bet)
         {
-            bets[numberBet] += bet;
+            bets[sector] += bet;
             balance -= bet;
         }
 
@@ -61,6 +61,11 @@ namespace wheelOfFortune
             {
                 bets[key] = 0;
             }
+        }
+
+        public void ShowNotEnoughBalance()
+        {
+            form.labelNotEnoughBalance.Visible = true;
         }
     }
 }

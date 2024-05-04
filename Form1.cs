@@ -22,6 +22,21 @@ namespace wheelOfFortune
             InitializeComponent();
         }
 
+        public void ShowButtonStartNewGame()
+        {
+            buttonStartNewGame.Visible = true;
+        }
+
+        public void ShowResults(Player player)
+        {
+            labelBalances.Text += $"Баланс игрока №{player.id}: {player.balance} \n";
+        }
+
+        public void ShowWinner(int winnerId, int winnerBalance)
+        {
+            labelWinner.Text = $"Победитель: Игрок №{winnerId}.\nБаланс: {winnerBalance}.\nИГРА ОКОНЧЕНА";
+        }
+
         private void StartTurn(object sender, EventArgs e)
         {
             wheel.wheelIsMoved = true;
@@ -48,7 +63,7 @@ namespace wheelOfFortune
                 int bet = int.Parse(textBoxBet.Text);
                 if (!currentPlayer.CanMakeBet(bet))
                 {
-                    labelNotEnoughBalance.Visible = true;
+                    currentPlayer.ShowNotEnoughBalance();
                     return;
                 }
                 currentPlayer.MakeBet(1, bet);
@@ -68,7 +83,7 @@ namespace wheelOfFortune
                 int bet = int.Parse(textBoxBet.Text);
                 if (!currentPlayer.CanMakeBet(bet))
                 {
-                    labelNotEnoughBalance.Visible = true;
+                    currentPlayer.ShowNotEnoughBalance();
                     return;
                 }
                 currentPlayer.MakeBet(2, bet);
@@ -89,7 +104,7 @@ namespace wheelOfFortune
                 int bet = int.Parse(textBoxBet.Text);
                 if (!currentPlayer.CanMakeBet(bet))
                 {
-                    labelNotEnoughBalance.Visible = true;
+                    currentPlayer.ShowNotEnoughBalance();
                     return;
                 }
                 currentPlayer.MakeBet(5, bet);
@@ -109,7 +124,7 @@ namespace wheelOfFortune
                 int bet = int.Parse(textBoxBet.Text);
                 if (!currentPlayer.CanMakeBet(bet))
                 {
-                    labelNotEnoughBalance.Visible = true;
+                    currentPlayer.ShowNotEnoughBalance();
                     return;
                 }
                 currentPlayer.MakeBet(10, bet);
@@ -129,7 +144,7 @@ namespace wheelOfFortune
                 int bet = int.Parse(textBoxBet.Text);
                 if (!currentPlayer.CanMakeBet(bet))
                 {
-                    labelNotEnoughBalance.Visible = true;
+                    currentPlayer.ShowNotEnoughBalance();
                     return;
                 }
                 currentPlayer.MakeBet(20, bet);
@@ -149,7 +164,7 @@ namespace wheelOfFortune
                 int bet = int.Parse(textBoxBet.Text);
                 if (!currentPlayer.CanMakeBet(bet))
                 {
-                    labelNotEnoughBalance.Visible = true;
+                    currentPlayer.ShowNotEnoughBalance();
                     return;
                 }
                 currentPlayer.MakeBet(40, bet);
@@ -208,6 +223,7 @@ namespace wheelOfFortune
             if (wheel.currentPlayerIndex + 1 == wheel.playersList.Count){
                 buttonStartTurn.Visible = true;
 
+                textBoxBet.Clear();
                 labelWinningSector.Visible = false;
                 labelBetX1.Visible = false;
                 labelBetX2.Visible = false;

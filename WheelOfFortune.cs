@@ -69,28 +69,9 @@ namespace wheelOfFortune
             return rotatedBmp;
         }
 
-        public void GetWinner()
+        public void EndGame()
         {
-            int winnerId = -1;
-            int winnerBalance = -1;
-
-            form.labelBalances.Visible = true;
-            form.labelBalances.Text = "";
-
-            foreach (Player player in playersList)
-            {
-                form.labelBalances.Text += $"Баланс игрока №{player.id}: {player.balance} \n";
-
-                if (player.balance > winnerBalance)
-                {
-                    winnerId = player.id;
-                    winnerBalance = player.balance;
-                }
-            }
-
-            form.labelWinner.Text = $"Победитель: Игрок №{winnerId}.\nБаланс: {winnerBalance}.\nИГРА ОКОНЧЕНА";
-
-            form.buttonStartNewGame.Visible = true;
+            form.ShowButtonStartNewGame();
 
             form.labelBetX1.Visible = false;
             form.labelBetX2.Visible = false;
@@ -115,6 +96,29 @@ namespace wheelOfFortune
             form.pictureBoxWheel.Visible = false;
             form.pictureBoxArrow.Visible = false;
 
+            GetWinner();
+        }
+
+        public void GetWinner()
+        {
+            int winnerId = -1;
+            int winnerBalance = -1;
+
+            form.labelBalances.Visible = true;
+            form.labelBalances.Text = "";
+
+            foreach (Player player in playersList)
+            {
+                form.ShowResults(player);
+
+                if (player.balance > winnerBalance)
+                {
+                    winnerId = player.id;
+                    winnerBalance = player.balance;
+                }
+            }
+
+            form.ShowWinner(winnerId, winnerBalance);
         }
 
         public void wheelTimer_Tick(object sender, EventArgs e)
@@ -159,7 +163,7 @@ namespace wheelOfFortune
 
                 if (turnsCount == 0)
                 {
-                    GetWinner();
+                    EndGame();
 
                     return;
                 }
