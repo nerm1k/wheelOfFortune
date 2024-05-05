@@ -75,7 +75,7 @@
             this.buttonStartTurn.Text = "Крутить барабан!";
             this.buttonStartTurn.UseVisualStyleBackColor = false;
             this.buttonStartTurn.Visible = false;
-            this.buttonStartTurn.Click += new System.EventHandler(this.StartTurn);
+            this.buttonStartTurn.Click += new System.EventHandler(this.StartTurningClick);
             // 
             // labelWinningSector
             // 
@@ -102,7 +102,7 @@
             this.buttonBetX1.Text = "1";
             this.buttonBetX1.UseVisualStyleBackColor = false;
             this.buttonBetX1.Visible = false;
-            this.buttonBetX1.Click += new System.EventHandler(this.MakeBetX1);
+            this.buttonBetX1.Click += new System.EventHandler(this.MakeBetX1Click);
             // 
             // buttonBetX2
             // 
@@ -116,7 +116,7 @@
             this.buttonBetX2.Text = "2";
             this.buttonBetX2.UseVisualStyleBackColor = false;
             this.buttonBetX2.Visible = false;
-            this.buttonBetX2.Click += new System.EventHandler(this.MakeBetX2);
+            this.buttonBetX2.Click += new System.EventHandler(this.MakeBetX2Click);
             // 
             // buttonBetX5
             // 
@@ -130,7 +130,7 @@
             this.buttonBetX5.Text = "5";
             this.buttonBetX5.UseVisualStyleBackColor = false;
             this.buttonBetX5.Visible = false;
-            this.buttonBetX5.Click += new System.EventHandler(this.MakeBetX5);
+            this.buttonBetX5.Click += new System.EventHandler(this.MakeBetX5Click);
             // 
             // buttonBetX10
             // 
@@ -144,7 +144,7 @@
             this.buttonBetX10.Text = "10";
             this.buttonBetX10.UseVisualStyleBackColor = false;
             this.buttonBetX10.Visible = false;
-            this.buttonBetX10.Click += new System.EventHandler(this.MakeBetX10);
+            this.buttonBetX10.Click += new System.EventHandler(this.MakeBetX10Click);
             // 
             // buttonBetX20
             // 
@@ -158,7 +158,7 @@
             this.buttonBetX20.Text = "20";
             this.buttonBetX20.UseVisualStyleBackColor = false;
             this.buttonBetX20.Visible = false;
-            this.buttonBetX20.Click += new System.EventHandler(this.MakeBetX20);
+            this.buttonBetX20.Click += new System.EventHandler(this.MakeBetX20Click);
             // 
             // buttonBetX40
             // 
@@ -172,7 +172,7 @@
             this.buttonBetX40.Text = "Д";
             this.buttonBetX40.UseVisualStyleBackColor = false;
             this.buttonBetX40.Visible = false;
-            this.buttonBetX40.Click += new System.EventHandler(this.MakeBetX40);
+            this.buttonBetX40.Click += new System.EventHandler(this.MakeBetX40Click);
             // 
             // labelBetX1
             // 
@@ -300,7 +300,7 @@
             this.buttonStartGame.TabIndex = 20;
             this.buttonStartGame.Text = "Начать игру";
             this.buttonStartGame.UseVisualStyleBackColor = false;
-            this.buttonStartGame.Click += new System.EventHandler(this.StartGame);
+            this.buttonStartGame.Click += new System.EventHandler(this.StartGameClick);
             // 
             // buttonPassTheTurn
             // 
@@ -314,7 +314,7 @@
             this.buttonPassTheTurn.Text = "Передать ход";
             this.buttonPassTheTurn.UseVisualStyleBackColor = false;
             this.buttonPassTheTurn.Visible = false;
-            this.buttonPassTheTurn.Click += new System.EventHandler(this.PassTheTurn);
+            this.buttonPassTheTurn.Click += new System.EventHandler(this.PassTheTurnClick);
             // 
             // labelBalances
             // 
@@ -397,7 +397,7 @@
             this.buttonStartNewGame.Text = "Начать новую игру";
             this.buttonStartNewGame.UseVisualStyleBackColor = false;
             this.buttonStartNewGame.Visible = false;
-            this.buttonStartNewGame.Click += new System.EventHandler(this.StartNewGame);
+            this.buttonStartNewGame.Click += new System.EventHandler(this.StartNewGameClick);
             // 
             // pictureBoxArrow
             // 

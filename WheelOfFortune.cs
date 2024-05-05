@@ -71,37 +71,14 @@ namespace wheelOfFortune
 
         public void EndGame()
         {
-            form.ShowButtonStartNewGame();
-
-            form.labelBetX1.Visible = false;
-            form.labelBetX2.Visible = false;
-            form.labelBetX5.Visible = false;
-            form.labelBetX10.Visible = false;
-            form.labelBetX20.Visible = false;
-            form.labelBetX40.Visible = false;
-            form.labelBalance.Visible = false;
-            form.labelNotEnoughBalance.Visible = false;
-            form.labelWinner.Visible = true;
-            form.labelBet.Visible = false;
-            form.labelCurrentPlayer.Visible = false;
-            form.textBoxBet.Visible = false;
-            form.buttonStartTurn.Visible = false;
-            form.buttonBetX1.Visible = false;
-            form.buttonBetX2.Visible = false;
-            form.buttonBetX5.Visible = false;
-            form.buttonBetX10.Visible = false;
-            form.buttonBetX20.Visible = false;
-            form.buttonBetX40.Visible = false;
-            form.buttonPassTheTurn.Visible = false;
-            form.pictureBoxWheel.Visible = false;
-            form.pictureBoxArrow.Visible = false;
+            form.PrepareNewGameUI();
 
             GetWinner();
         }
 
         public void GetWinner()
         {
-            int winnerId = -1;
+            Player winner = null;
             int winnerBalance = -1;
 
             form.labelBalances.Visible = true;
@@ -113,12 +90,11 @@ namespace wheelOfFortune
 
                 if (player.balance > winnerBalance)
                 {
-                    winnerId = player.id;
-                    winnerBalance = player.balance;
+                    winner = player;
                 }
             }
 
-            form.ShowWinner(winnerId, winnerBalance);
+            form.ShowWinner(winner);
         }
 
         public void wheelTimer_Tick(object sender, EventArgs e)
@@ -168,35 +144,11 @@ namespace wheelOfFortune
                     return;
                 }
 
-                form.labelBetX1.Text = "Ставка на х1: ";
-                form.labelBetX2.Text = "Ставка на х2: ";
-                form.labelBetX5.Text = "Ставка на х5: ";
-                form.labelBetX10.Text = "Ставка на х10: ";
-                form.labelBetX20.Text = "Ставка на х20: ";
-                form.labelBetX40.Text = "Ставка на х40: ";
-
+                form.PrepareNewTurnUI();
 
                 currentPlayerIndex = 0;
                 form.labelBalance.Text = $"Баланс: {playersList[currentPlayerIndex].balance}";
                 form.labelCurrentPlayer.Text = $"Игрок №{playersList[currentPlayerIndex].id}";
-
-                form.buttonStartTurn.Visible = false;
-                form.labelBetX1.Visible = true;
-                form.labelBetX2.Visible = true;
-                form.labelBetX5.Visible = true;
-                form.labelBetX10.Visible = true;
-                form.labelBetX20.Visible = true;
-                form.labelBetX40.Visible = true;
-                form.labelBalance.Visible = true;
-                form.labelCurrentPlayer.Visible = true;
-                form.textBoxBet.Visible = true;
-                form.buttonBetX1.Visible = true;
-                form.buttonBetX2.Visible = true;
-                form.buttonBetX5.Visible = true;
-                form.buttonBetX10.Visible = true;
-                form.buttonBetX20.Visible = true;
-                form.buttonBetX40.Visible = true;
-                form.buttonPassTheTurn.Visible = true;
             }
         }
     }
