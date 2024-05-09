@@ -36,11 +36,8 @@ namespace wheelOfFortune
                 return;
             }
             currentPlayer.MakeBet(sector, bet);
-            label.Text = $"Ставка на х{sector}: {currentPlayer.bets[sector]}";
-            form.labelBalance.Text = $"Баланс: {currentPlayer.balance}";
-            form.labelCurrentPlayer.Text = $"Игрок №{currentPlayer.id}";
-            form.textBoxBet.Clear();
-            form.labelNotEnoughBalance.Visible = false;
+            form.UpdateBetsUI(currentPlayer.id, currentPlayer.balance, currentPlayer.bets[sector], sector, label);
+            return;
         }
 
         public void PassTheTurn()

@@ -90,6 +90,7 @@ namespace wheelOfFortune
 
                 if (player.balance > winnerBalance)
                 {
+                    winnerBalance = player.balance;
                     winner = player;
                 }
             }
