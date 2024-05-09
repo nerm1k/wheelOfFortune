@@ -118,6 +118,11 @@ namespace wheelOfFortune
             gameController.StartTurning();
         }
 
+        public void ShowNotEnoughBalance()
+        {
+            labelNotEnoughBalance.Visible = true;
+        }
+
         public void ShowResults(Player player)
         {
             labelBalances.Text += $"Баланс игрока №{player.id}: {player.balance} \n";

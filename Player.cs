@@ -62,10 +62,5 @@ namespace wheelOfFortune
                 bets[key] = 0;
             }
         }
-
-        public void ShowNotEnoughBalance()
-        {
-            form.labelNotEnoughBalance.Visible = true;
-        }
     }
 }

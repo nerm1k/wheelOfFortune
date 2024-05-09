@@ -32,7 +32,7 @@ namespace wheelOfFortune
             Player currentPlayer = wheel.playersList[wheel.currentPlayerIndex];
             if (!currentPlayer.CanMakeBet(bet))
             {
-                currentPlayer.ShowNotEnoughBalance();
+                form.ShowNotEnoughBalance();
                 return;
             }
             currentPlayer.MakeBet(sector, bet);

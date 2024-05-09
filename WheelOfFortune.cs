@@ -42,10 +42,10 @@ namespace wheelOfFortune
             }
             wheelTimer = new Timer();
             wheelTimer.Interval = 50; // как часто вызывается метод ниже
-            wheelTimer.Tick += wheelTimer_Tick;
+            wheelTimer.Tick += WheelTimerTick;
         }
 
-        public Bitmap RotateImage(Image image, float angle, PointF offset = default(PointF))
+        private Bitmap RotateImage(Image image, float angle, PointF offset = default(PointF))
         {
             if (image == null)
             {
@@ -69,14 +69,14 @@ namespace wheelOfFortune
             return rotatedBmp;
         }
 
-        public void EndGame()
+        private void EndGame()
         {
             form.PrepareNewGameUI();
 
             GetWinner();
         }
 
-        public void GetWinner()
+        private void GetWinner()
         {
             Player winner = null;
             int winnerBalance = -1;
@@ -98,7 +98,7 @@ namespace wheelOfFortune
             form.ShowWinner(winner);
         }
 
-        public void wheelTimer_Tick(object sender, EventArgs e)
+        private void WheelTimerTick(object sender, EventArgs e)
         {
             if (wheelIsMoved && numberOfTwists > 0)
             {
@@ -123,34 +123,39 @@ namespace wheelOfFortune
             {
                 wheelTimer.Stop();
                 wheelIsMoved = false;
-                turnsCount--;
-
-                int result = states[state];
-
-                form.labelWinningSector.Visible = true;
-                form.labelWinningSector.Text = $"Победный сектор x{result}";
-
-                form.labelPrizes.Text = "";
-                form.labelPrizes.Visible = true;
-
-                foreach (Player player in playersList)
-                {
-                    player.CalculatePrize(result);
-                }
-
-                if (turnsCount == 0)
-                {
-                    EndGame();
-
-                    return;
-                }
-
-                form.PrepareNewTurnUI();
-
-                currentPlayerIndex = 0;
-                form.labelBalance.Text = $"Баланс: {playersList[currentPlayerIndex].balance}";
-                form.labelCurrentPlayer.Text = $"Игрок №{playersList[currentPlayerIndex].id}";
+                GetResults();
             }
+        }
+
+        private void GetResults()
+        {
+            turnsCount--;
+
+            int result = states[state];
+
+            form.labelWinningSector.Visible = true;
+            form.labelWinningSector.Text = $"Победный сектор x{result}";
+
+            form.labelPrizes.Text = "";
+            form.labelPrizes.Visible = true;
+
+            foreach (Player player in playersList)
+            {
+                player.CalculatePrize(result);
+            }
+
+            if (turnsCount == 0)
+            {
+                EndGame();
+
+                return;
+            }
+
+            form.PrepareNewTurnUI();
+
+            currentPlayerIndex = 0;
+            form.labelBalance.Text = $"Баланс: {playersList[currentPlayerIndex].balance}";
+            form.labelCurrentPlayer.Text = $"Игрок №{playersList[currentPlayerIndex].id}";
         }
     }
 }
