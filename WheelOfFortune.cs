@@ -21,9 +21,9 @@ namespace wheelOfFortune
         private int state;
         private int turnsCount;
 
-        public readonly List<Player> playersList;
+        public readonly List<Player> players;
         public readonly Timer wheelTimer;
-        public bool wheelIsMoved;
+        public bool wheelIsMoving;
         public int numberOfTwists;
         public int currentPlayerIndex = 0;
 
@@ -34,24 +34,19 @@ namespace wheelOfFortune
             states = new int[] { 1, 2, 20, 1, 5, 2, 1, 10, 1, 2, 1, 5, 1, 40, 1, 2, 1, 2, 1, 5, 1, 10, 1, 2, 1, 2, 1, 5, 1, 20, 1, 2, 1, 2, 1, 10, 2, 5, 1, 2, 40, 2, 1, 2, 1, 5, 1, 2, 1, 10, 1, 5, 1, 2 };
             angle = 0.0f;
             this.turnsCount = turnsCount;
-            playersList = new List<Player>();
+            players = new List<Player>();
             for (int i = 0; i < playersCount; i++)
             {
                 Player player = new Player(form);
-                playersList.Add(player);
+                players.Add(player);
             }
             wheelTimer = new Timer();
             wheelTimer.Interval = 50; // как часто вызывается метод ниже
             wheelTimer.Tick += WheelTimerTick;
         }
 
-        private Bitmap RotateImage(Image image, float angle, PointF offset = default(PointF))
+        private Bitmap RotateImage(Bitmap image, float angle, PointF offset = default(PointF))
         {
-            if (image == null)
-            {
-                throw new ArgumentNullException("image");
-            }
-
             Bitmap rotatedBmp = new Bitmap(image.Width, image.Height);
             rotatedBmp.SetResolution(image.HorizontalResolution, image.VerticalResolution);
             Graphics g = Graphics.FromImage(rotatedBmp);
@@ -81,10 +76,7 @@ namespace wheelOfFortune
             Player winner = null;
             int winnerBalance = -1;
 
-            form.labelBalances.Visible = true;
-            form.labelBalances.Text = "";
-
-            foreach (Player player in playersList)
+            foreach (Player player in players)
             {
                 form.ShowResults(player);
 
@@ -100,12 +92,12 @@ namespace wheelOfFortune
 
         private void WheelTimerTick(object sender, EventArgs e)
         {
-            if (wheelIsMoved && numberOfTwists > 0)
+            if (wheelIsMoving && numberOfTwists > 0)
             {
                 angle += numberOfTwists / 10;
                 angle = angle % 360;
                 Bitmap rotatedImage = RotateImage(wheelPic, angle);
-                form.pictureBoxWheel.Image = rotatedImage;
+                form.UpdateWheelPic(rotatedImage);
                 numberOfTwists--;
 
                 state = Convert.ToInt32(Math.Ceiling(angle / 6.666666666666667));
@@ -122,7 +114,7 @@ namespace wheelOfFortune
             else
             {
                 wheelTimer.Stop();
-                wheelIsMoved = false;
+                wheelIsMoving = false;
                 GetResults();
             }
         }
@@ -133,13 +125,9 @@ namespace wheelOfFortune
 
             int result = states[state];
 
-            form.labelWinningSector.Visible = true;
-            form.labelWinningSector.Text = $"Победный сектор x{result}";
+            form.ShowWinningSector(result);
 
-            form.labelPrizes.Text = "";
-            form.labelPrizes.Visible = true;
-
-            foreach (Player player in playersList)
+            foreach (Player player in players)
             {
                 player.CalculatePrize(result);
             }
@@ -154,8 +142,7 @@ namespace wheelOfFortune
             form.PrepareNewTurnUI();
 
             currentPlayerIndex = 0;
-            form.labelBalance.Text = $"Баланс: {playersList[currentPlayerIndex].balance}";
-            form.labelCurrentPlayer.Text = $"Игрок №{playersList[currentPlayerIndex].id}";
+            form.ShowPlayerAndBalance(players[currentPlayerIndex]);
         }
     }
 }

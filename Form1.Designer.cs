@@ -323,9 +323,8 @@
             this.labelBalances.ForeColor = System.Drawing.SystemColors.Control;
             this.labelBalances.Location = new System.Drawing.Point(324, 460);
             this.labelBalances.Name = "labelBalances";
-            this.labelBalances.Size = new System.Drawing.Size(156, 24);
+            this.labelBalances.Size = new System.Drawing.Size(0, 24);
             this.labelBalances.TabIndex = 22;
-            this.labelBalances.Text = "labelBalances";
             this.labelBalances.Visible = false;
             // 
             // labelPrizes
@@ -335,9 +334,8 @@
             this.labelPrizes.ForeColor = System.Drawing.SystemColors.Control;
             this.labelPrizes.Location = new System.Drawing.Point(723, 460);
             this.labelPrizes.Name = "labelPrizes";
-            this.labelPrizes.Size = new System.Drawing.Size(101, 22);
+            this.labelPrizes.Size = new System.Drawing.Size(0, 22);
             this.labelPrizes.TabIndex = 23;
-            this.labelPrizes.Text = "labelPrizes";
             this.labelPrizes.Visible = false;
             // 
             // labelNotEnoughBalance
@@ -493,37 +491,37 @@
 
         #endregion
 
-        public System.Windows.Forms.PictureBox pictureBoxWheel;
-        public System.Windows.Forms.PictureBox pictureBoxArrow;
-        public System.Windows.Forms.Button buttonStartTurn;
-        public System.Windows.Forms.Label labelWinningSector;
-        public System.Windows.Forms.Button buttonBetX1;
-        public System.Windows.Forms.Button buttonBetX2;
-        public System.Windows.Forms.Button buttonBetX5;
-        public System.Windows.Forms.Button buttonBetX10;
-        public System.Windows.Forms.Button buttonBetX20;
-        public System.Windows.Forms.Button buttonBetX40;
-        public System.Windows.Forms.Label labelBetX1;
-        public System.Windows.Forms.TextBox textBoxBet;
-        public System.Windows.Forms.Label labelBetX2;
-        public System.Windows.Forms.Label labelBetX5;
-        public System.Windows.Forms.Label labelBetX10;
-        public System.Windows.Forms.Label labelBetX20;
-        public System.Windows.Forms.Label labelBetX40;
-        public System.Windows.Forms.Label labelBalance;
-        public System.Windows.Forms.TextBox textBoxPlayers;
-        public System.Windows.Forms.Label labelPlayers;
-        public System.Windows.Forms.Button buttonStartGame;
-        public System.Windows.Forms.Button buttonPassTheTurn;
-        public System.Windows.Forms.Label labelBalances;
-        public System.Windows.Forms.Label labelPrizes;
-        public System.Windows.Forms.Label labelNotEnoughBalance;
-        public System.Windows.Forms.Label labelTurns;
-        public System.Windows.Forms.TextBox textBoxTurns;
-        public System.Windows.Forms.Label labelWinner;
-        public System.Windows.Forms.Button buttonStartNewGame;
-        public System.Windows.Forms.Label labelBet;
-        public System.Windows.Forms.Label labelCurrentPlayer;
+        private System.Windows.Forms.PictureBox pictureBoxWheel;
+        private System.Windows.Forms.PictureBox pictureBoxArrow;
+        private System.Windows.Forms.Button buttonStartTurn;
+        private System.Windows.Forms.Label labelWinningSector;
+        private System.Windows.Forms.Button buttonBetX1;
+        private System.Windows.Forms.Button buttonBetX2;
+        private System.Windows.Forms.Button buttonBetX5;
+        private System.Windows.Forms.Button buttonBetX10;
+        private System.Windows.Forms.Button buttonBetX20;
+        private System.Windows.Forms.Button buttonBetX40;
+        private System.Windows.Forms.Label labelBetX1;
+        private System.Windows.Forms.TextBox textBoxBet;
+        private System.Windows.Forms.Label labelBetX2;
+        private System.Windows.Forms.Label labelBetX5;
+        private System.Windows.Forms.Label labelBetX10;
+        private System.Windows.Forms.Label labelBetX20;
+        private System.Windows.Forms.Label labelBetX40;
+        private System.Windows.Forms.Label labelBalance;
+        private System.Windows.Forms.TextBox textBoxPlayers;
+        private System.Windows.Forms.Label labelPlayers;
+        private System.Windows.Forms.Button buttonStartGame;
+        private System.Windows.Forms.Button buttonPassTheTurn;
+        private System.Windows.Forms.Label labelBalances;
+        private System.Windows.Forms.Label labelPrizes;
+        private System.Windows.Forms.Label labelNotEnoughBalance;
+        private System.Windows.Forms.Label labelTurns;
+        private System.Windows.Forms.TextBox textBoxTurns;
+        private System.Windows.Forms.Label labelWinner;
+        private System.Windows.Forms.Button buttonStartNewGame;
+        private System.Windows.Forms.Label labelBet;
+        private System.Windows.Forms.Label labelCurrentPlayer;
     }
 }
 

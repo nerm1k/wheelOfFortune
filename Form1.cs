@@ -19,6 +19,7 @@ namespace wheelOfFortune
         public Form1()
         {
             InitializeComponent();
+            gameController = new GameController(this);
         }
 
         private void AllowOnlyDigits(object sender, KeyPressEventArgs e)
@@ -92,7 +93,6 @@ namespace wheelOfFortune
                 int playersCount = int.Parse(textBoxPlayers.Text);
                 int turnsCount = int.Parse(textBoxTurns.Text);
 
-                gameController = new GameController(this);
                 gameController.StartGame(playersCount, turnsCount);
 
                 PrepareGameUI();
@@ -123,8 +123,27 @@ namespace wheelOfFortune
             labelNotEnoughBalance.Visible = true;
         }
 
+        public void ShowPlayerAndBalance(Player player)
+        {
+            labelBalance.Text = $"Баланс: {player.balance}";
+            labelCurrentPlayer.Text = $"Игрок №{player.id}";
+        }
+
+        public void ShowWinningSector(int sector)
+        {
+            labelWinningSector.Visible = true;
+            labelWinningSector.Text = $"Победный сектор x{sector}";
+        }
+
+        public void ShowPrizes(int id, int prize)
+        {
+            labelPrizes.Visible = true;
+            labelPrizes.Text += $"Игрок №{id} выиграл {prize} \n";
+        }
+
         public void ShowResults(Player player)
         {
+            labelBalances.Visible = true;
             labelBalances.Text += $"Баланс игрока №{player.id}: {player.balance} \n";
         }
 
@@ -134,11 +153,16 @@ namespace wheelOfFortune
             labelWinner.Text = $"Победитель: Игрок №{winner.id}.\nБаланс: {winner.balance}.\nИГРА ОКОНЧЕНА";
         }
 
-        public void UpdateBetsUI(int playerId, int playerBalance, int playerBetsOnSector, int sector, Label label)
+        public void UpdateWheelPic(Bitmap rotatedImage)
         {
-            label.Text = $"Ставка на х{sector}: {playerBetsOnSector}";
-            labelBalance.Text = $"Баланс: {playerBalance}";
-            labelCurrentPlayer.Text = $"Игрок №{playerId}";
+            pictureBoxWheel.Image = rotatedImage;
+        }
+
+        public void UpdateBetsUI(Player player, int sector, Label label)
+        {
+            label.Text = $"Ставка на х{sector}: {player.bets[sector]}";
+            labelBalance.Text = $"Баланс: {player.balance}";
+            labelCurrentPlayer.Text = $"Игрок №{player.id}";
             textBoxBet.Clear();
             labelNotEnoughBalance.Visible = false;
         }
@@ -220,6 +244,7 @@ namespace wheelOfFortune
             textBoxBet.Clear();
             labelWinningSector.Visible = false;
             labelPrizes.Visible = false;
+            labelPrizes.Text = "";
         }
     }
 }

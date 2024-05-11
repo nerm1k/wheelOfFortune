@@ -54,7 +54,7 @@ namespace wheelOfFortune
                 {
                     int prize = bet.Value * result;
                     balance += prize;
-                    form.labelPrizes.Text += $"Игрок №{id} выиграл {prize} \n";
+                    form.ShowPrizes(id, prize);
                 }
             }
             foreach (var key in bets.Keys.ToList())

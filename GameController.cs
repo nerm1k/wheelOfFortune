@@ -21,28 +21,28 @@ namespace wheelOfFortune
         {
 
             wheel = new WheelOfFortune(form, playersCount, turnsCount);
-            Player currentPlayer = wheel.playersList[0];
+            Player currentPlayer = wheel.players[0];
 
-            form.labelBalance.Text = $"Баланс: {currentPlayer.balance}";
-            form.labelCurrentPlayer.Text = $"Игрок №{currentPlayer.id}";
+            form.ShowPlayerAndBalance(currentPlayer);
         }
 
         public void MakeBetOnSector(int sector, int bet, Label label)
         {
-            Player currentPlayer = wheel.playersList[wheel.currentPlayerIndex];
+            Player currentPlayer = wheel.players[wheel.currentPlayerIndex];
+
             if (!currentPlayer.CanMakeBet(bet))
             {
                 form.ShowNotEnoughBalance();
                 return;
             }
             currentPlayer.MakeBet(sector, bet);
-            form.UpdateBetsUI(currentPlayer.id, currentPlayer.balance, currentPlayer.bets[sector], sector, label);
-            return;
+
+            form.UpdateBetsUI(currentPlayer, sector, label);
         }
 
         public void PassTheTurn()
         {
-            if (wheel.currentPlayerIndex + 1 == wheel.playersList.Count)
+            if (wheel.currentPlayerIndex + 1 == wheel.players.Count)
             {
                 form.PrepareTurningUI();
 
@@ -50,15 +50,14 @@ namespace wheelOfFortune
             }
 
             wheel.currentPlayerIndex++;
-            Player currentPlayer = wheel.playersList[wheel.currentPlayerIndex];
+            Player currentPlayer = wheel.players[wheel.currentPlayerIndex];
 
-            form.labelBalance.Text = $"Баланс: {currentPlayer.balance}";
-            form.labelCurrentPlayer.Text = $"Игрок №{currentPlayer.id}";
+            form.ShowPlayerAndBalance(currentPlayer);
         }
 
         public void StartTurning()
         {
-            wheel.wheelIsMoved = true;
+            wheel.wheelIsMoving = true;
             Random rand = new Random();
             wheel.numberOfTwists = rand.Next(50, 100); // кол-во кручений
             wheel.wheelTimer.Start();
