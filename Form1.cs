@@ -19,7 +19,6 @@ namespace wheelOfFortune
         public Form1()
         {
             InitializeComponent();
-            gameController = new GameController(this);
         }
 
         private void AllowOnlyDigits(object sender, KeyPressEventArgs e)
@@ -93,7 +92,9 @@ namespace wheelOfFortune
                 int playersCount = int.Parse(textBoxPlayers.Text);
                 int turnsCount = int.Parse(textBoxTurns.Text);
 
-                gameController.StartGame(playersCount, turnsCount);
+                gameController = new GameController(this);
+
+                gameController.StartGame(this, playersCount, turnsCount);
 
                 PrepareGameUI();
             }

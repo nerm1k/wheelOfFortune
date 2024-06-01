@@ -9,21 +9,21 @@ namespace wheelOfFortune
 {
     public class GameController
     {
+        private readonly FormUpdater formUpdater;
         private WheelOfFortune wheel;
-        private Form1 form;
 
         public GameController(Form1 form)
         {
-            this.form = form;
+            formUpdater = new FormUpdater(form);
         }
 
-        public void StartGame(int playersCount, int turnsCount)
+        public void StartGame(Form1 form, int playersCount, int turnsCount)
         {
 
             wheel = new WheelOfFortune(form, playersCount, turnsCount);
             IPlayer currentPlayer = wheel.players[0];
 
-            form.ShowPlayerAndBalance(currentPlayer);
+            formUpdater.ShowPlayerAndBalance(currentPlayer);
         }
 
         public void MakeBetOnSector(int sector, int bet, Label label)
@@ -32,19 +32,19 @@ namespace wheelOfFortune
 
             if (!currentPlayer.CanMakeBet(bet))
             {
-                form.ShowNotEnoughBalance();
+                formUpdater.ShowNotEnoughBalance();
                 return;
             }
             currentPlayer.MakeBet(sector, bet);
 
-            form.UpdateBetsUI(currentPlayer, sector, label);
+            formUpdater.UpdateBetsUI(currentPlayer, sector, label);
         }
 
         public void PassTheTurn()
         {
             if (wheel.currentPlayerIndex + 1 == wheel.players.Count)
             {
-                form.PrepareTurningUI();
+                formUpdater.PrepareTurningUI();
 
                 return;
             }
@@ -52,7 +52,7 @@ namespace wheelOfFortune
             wheel.currentPlayerIndex++;
             IPlayer currentPlayer = wheel.players[wheel.currentPlayerIndex];
 
-            form.ShowPlayerAndBalance(currentPlayer);
+            formUpdater.ShowPlayerAndBalance(currentPlayer);
         }
 
         public void StartTurning()
