@@ -55,10 +55,10 @@
             this.textBoxTurns = new System.Windows.Forms.TextBox();
             this.labelWinner = new System.Windows.Forms.Label();
             this.buttonStartNewGame = new System.Windows.Forms.Button();
-            this.pictureBoxArrow = new System.Windows.Forms.PictureBox();
-            this.pictureBoxWheel = new System.Windows.Forms.PictureBox();
             this.labelBet = new System.Windows.Forms.Label();
             this.labelCurrentPlayer = new System.Windows.Forms.Label();
+            this.pictureBoxArrow = new System.Windows.Forms.PictureBox();
+            this.pictureBoxWheel = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWheel)).BeginInit();
             this.SuspendLayout();
@@ -397,28 +397,6 @@
             this.buttonStartNewGame.Visible = false;
             this.buttonStartNewGame.Click += new System.EventHandler(this.StartNewGameClick);
             // 
-            // pictureBoxArrow
-            // 
-            this.pictureBoxArrow.Image = global::wheelOfFortune.Properties.Resources.White_Arrow_PNG_Image_HD;
-            this.pictureBoxArrow.Location = new System.Drawing.Point(444, 2);
-            this.pictureBoxArrow.Name = "pictureBoxArrow";
-            this.pictureBoxArrow.Size = new System.Drawing.Size(83, 56);
-            this.pictureBoxArrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxArrow.TabIndex = 1;
-            this.pictureBoxArrow.TabStop = false;
-            this.pictureBoxArrow.Visible = false;
-            // 
-            // pictureBoxWheel
-            // 
-            this.pictureBoxWheel.Image = global::wheelOfFortune.Properties.Resources.wheel__1_;
-            this.pictureBoxWheel.Location = new System.Drawing.Point(294, 64);
-            this.pictureBoxWheel.Name = "pictureBoxWheel";
-            this.pictureBoxWheel.Size = new System.Drawing.Size(369, 369);
-            this.pictureBoxWheel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBoxWheel.TabIndex = 0;
-            this.pictureBoxWheel.TabStop = false;
-            this.pictureBoxWheel.Visible = false;
-            // 
             // labelBet
             // 
             this.labelBet.AutoSize = true;
@@ -442,6 +420,28 @@
             this.labelCurrentPlayer.TabIndex = 30;
             this.labelCurrentPlayer.Text = "Игрок №";
             this.labelCurrentPlayer.Visible = false;
+            // 
+            // pictureBoxArrow
+            // 
+            this.pictureBoxArrow.Image = global::wheelOfFortune.Properties.Resources.White_Arrow_PNG_Image_HD;
+            this.pictureBoxArrow.Location = new System.Drawing.Point(444, 2);
+            this.pictureBoxArrow.Name = "pictureBoxArrow";
+            this.pictureBoxArrow.Size = new System.Drawing.Size(83, 56);
+            this.pictureBoxArrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxArrow.TabIndex = 1;
+            this.pictureBoxArrow.TabStop = false;
+            this.pictureBoxArrow.Visible = false;
+            // 
+            // pictureBoxWheel
+            // 
+            this.pictureBoxWheel.Image = global::wheelOfFortune.Properties.Resources.wheelv2;
+            this.pictureBoxWheel.Location = new System.Drawing.Point(294, 64);
+            this.pictureBoxWheel.Name = "pictureBoxWheel";
+            this.pictureBoxWheel.Size = new System.Drawing.Size(369, 369);
+            this.pictureBoxWheel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxWheel.TabIndex = 0;
+            this.pictureBoxWheel.TabStop = false;
+            this.pictureBoxWheel.Visible = false;
             // 
             // Form1
             // 

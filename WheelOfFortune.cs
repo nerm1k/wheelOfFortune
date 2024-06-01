@@ -30,7 +30,7 @@ namespace wheelOfFortune
         public WheelOfFortune(Form1 form, int playersCount, int turnsCount)
         {
             this.form = form;
-            wheelPic = new Bitmap(Properties.Resources.wheel__1_);
+            wheelPic = new Bitmap(Properties.Resources.wheelv2);
             states = new int[] { 1, 2, 20, 1, 5, 2, 1, 10, 1, 2, 1, 5, 1, 40, 1, 2, 1, 2, 1, 5, 1, 10, 1, 2, 1, 2, 1, 5, 1, 20, 1, 2, 1, 2, 1, 10, 2, 5, 1, 2, 40, 2, 1, 2, 1, 5, 1, 2, 1, 10, 1, 5, 1, 2 };
             angle = 0.0f;
             this.turnsCount = turnsCount;
