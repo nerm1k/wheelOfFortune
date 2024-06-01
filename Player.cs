@@ -6,20 +6,29 @@ using System.Threading.Tasks;
 
 namespace wheelOfFortune
 {
-    public class Player
+    public interface IPlayer
+    {
+        int id { get; }
+        int balance { get; set; }
+        Dictionary<int, int> bets { get; }
+
+        void MakeBet(int sector, int bet);
+        bool CanMakeBet(int bet);
+        int CalculatePrize(int result);
+    }
+
+    public class Player: IPlayer
     {
         private static int nextId = 1;
-        private readonly Form1 form;
 
-        public readonly int id;
-        public int balance;
-        public Dictionary<int, int> bets;
+        public int id { get; }
+        public int balance { get; set; }
+        public Dictionary<int, int> bets { get; }
 
-        public Player(Form1 form)
+        public Player()
         {
             id = nextId;
             nextId++;
-            this.form = form;
             balance = 1000;
             bets = new Dictionary<int, int>{
                     { 1, 0},
@@ -46,21 +55,22 @@ namespace wheelOfFortune
             return true;
         }
 
-        public void CalculatePrize(int result)
+        public int CalculatePrize(int result)
         {
+            int prize = 0;
             foreach (var bet in bets)
             {
                 if (bet.Key == result)
                 {
-                    int prize = bet.Value * result;
+                    prize = bet.Value * result;
                     balance += prize;
-                    form.ShowPrizes(id, prize);
                 }
             }
             foreach (var key in bets.Keys.ToList())
             {
                 bets[key] = 0;
             }
+            return prize;
         }
     }
 }

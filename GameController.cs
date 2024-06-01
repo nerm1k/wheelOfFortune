@@ -21,14 +21,14 @@ namespace wheelOfFortune
         {
 
             wheel = new WheelOfFortune(form, playersCount, turnsCount);
-            Player currentPlayer = wheel.players[0];
+            IPlayer currentPlayer = wheel.players[0];
 
             form.ShowPlayerAndBalance(currentPlayer);
         }
 
         public void MakeBetOnSector(int sector, int bet, Label label)
         {
-            Player currentPlayer = wheel.players[wheel.currentPlayerIndex];
+            IPlayer currentPlayer = wheel.players[wheel.currentPlayerIndex];
 
             if (!currentPlayer.CanMakeBet(bet))
             {
@@ -50,7 +50,7 @@ namespace wheelOfFortune
             }
 
             wheel.currentPlayerIndex++;
-            Player currentPlayer = wheel.players[wheel.currentPlayerIndex];
+            IPlayer currentPlayer = wheel.players[wheel.currentPlayerIndex];
 
             form.ShowPlayerAndBalance(currentPlayer);
         }

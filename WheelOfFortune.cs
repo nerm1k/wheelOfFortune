@@ -21,7 +21,7 @@ namespace wheelOfFortune
         private int state;
         private int turnsCount;
 
-        public readonly List<Player> players;
+        public readonly List<IPlayer> players;
         public readonly Timer wheelTimer;
         public bool wheelIsMoving;
         public int numberOfTwists;
@@ -34,10 +34,10 @@ namespace wheelOfFortune
             states = new int[] { 1, 2, 20, 1, 5, 2, 1, 10, 1, 2, 1, 5, 1, 40, 1, 2, 1, 2, 1, 5, 1, 10, 1, 2, 1, 2, 1, 5, 1, 20, 1, 2, 1, 2, 1, 10, 2, 5, 1, 2, 40, 2, 1, 2, 1, 5, 1, 2, 1, 10, 1, 5, 1, 2 };
             angle = 0.0f;
             this.turnsCount = turnsCount;
-            players = new List<Player>();
+            players = new List<IPlayer>();
             for (int i = 0; i < playersCount; i++)
             {
-                Player player = new Player(form);
+                IPlayer player = new Player();
                 players.Add(player);
             }
             wheelTimer = new Timer();
@@ -73,10 +73,10 @@ namespace wheelOfFortune
 
         private void GetWinner()
         {
-            Player winner = null;
+            IPlayer winner = null;
             int winnerBalance = -1;
 
-            foreach (Player player in players)
+            foreach (IPlayer player in players)
             {
                 form.ShowResults(player);
 
@@ -127,9 +127,10 @@ namespace wheelOfFortune
 
             form.ShowWinningSector(result);
 
-            foreach (Player player in players)
+            foreach (IPlayer player in players)
             {
-                player.CalculatePrize(result);
+                int prize = player.CalculatePrize(result);
+                form.ShowPrizes(player.id, prize);
             }
 
             if (turnsCount == 0)

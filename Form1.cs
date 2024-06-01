@@ -123,7 +123,7 @@ namespace wheelOfFortune
             labelNotEnoughBalance.Visible = true;
         }
 
-        public void ShowPlayerAndBalance(Player player)
+        public void ShowPlayerAndBalance(IPlayer player)
         {
             labelBalance.Text = $"Баланс: {player.balance}";
             labelCurrentPlayer.Text = $"Игрок №{player.id}";
@@ -141,13 +141,13 @@ namespace wheelOfFortune
             labelPrizes.Text += $"Игрок №{id} выиграл {prize} \n";
         }
 
-        public void ShowResults(Player player)
+        public void ShowResults(IPlayer player)
         {
             labelBalances.Visible = true;
             labelBalances.Text += $"Баланс игрока №{player.id}: {player.balance} \n";
         }
 
-        public void ShowWinner(Player winner)
+        public void ShowWinner(IPlayer winner)
         {
             labelWinner.Visible = true;
             labelWinner.Text = $"Победитель: Игрок №{winner.id}.\nБаланс: {winner.balance}.\nИГРА ОКОНЧЕНА";
@@ -158,7 +158,7 @@ namespace wheelOfFortune
             pictureBoxWheel.Image = rotatedImage;
         }
 
-        public void UpdateBetsUI(Player player, int sector, Label label)
+        public void UpdateBetsUI(IPlayer player, int sector, Label label)
         {
             label.Text = $"Ставка на х{sector}: {player.bets[sector]}";
             labelBalance.Text = $"Баланс: {player.balance}";
