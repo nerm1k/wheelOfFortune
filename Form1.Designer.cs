@@ -332,9 +332,9 @@
             this.labelPrizes.AutoSize = true;
             this.labelPrizes.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelPrizes.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelPrizes.Location = new System.Drawing.Point(723, 460);
+            this.labelPrizes.Location = new System.Drawing.Point(704, 460);
             this.labelPrizes.Name = "labelPrizes";
-            this.labelPrizes.Size = new System.Drawing.Size(0, 22);
+            this.labelPrizes.Size = new System.Drawing.Size(17, 22);
             this.labelPrizes.TabIndex = 23;
             this.labelPrizes.Visible = false;
             // 

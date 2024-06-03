@@ -41,7 +41,7 @@ namespace wheelOfFortune
                 players.Add(player);
             }
             wheelTimer = new Timer();
-            wheelTimer.Interval = 50; // как часто вызывается метод ниже
+            wheelTimer.Interval = 50;
             wheelTimer.Tick += WheelTimerTick;
         }
 
