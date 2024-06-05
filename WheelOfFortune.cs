@@ -24,7 +24,7 @@ namespace wheelOfFortune
         public readonly List<IPlayer> players;
         public readonly Timer wheelTimer;
         public bool wheelIsMoving;
-        public int numberOfTwists;
+        public int numberOfTicks;
         public int currentPlayerIndex = 0;
 
         public WheelOfFortune(Form1 form, int playersCount, int turnsCount)
@@ -41,7 +41,7 @@ namespace wheelOfFortune
                 players.Add(player);
             }
             wheelTimer = new Timer();
-            wheelTimer.Interval = 50;
+            wheelTimer.Interval = 40;
             wheelTimer.Tick += WheelTimerTick;
         }
 
@@ -92,21 +92,17 @@ namespace wheelOfFortune
 
         private void WheelTimerTick(object sender, EventArgs e)
         {
-            if (wheelIsMoving && numberOfTwists > 0)
+            if (wheelIsMoving && numberOfTicks > 0)
             {
-                angle += numberOfTwists / 10;
+                angle += numberOfTicks / 10;
                 angle = angle % 360;
                 Bitmap rotatedImage = RotateImage(wheelPic, angle);
                 form.UpdateWheelPic(rotatedImage);
-                numberOfTwists--;
+                numberOfTicks--;
 
                 state = Convert.ToInt32(Math.Ceiling(angle / 6.666666666666667));
 
-                if (state == 0)
-                {
-                    state = 0;
-                }
-                else
+                if (state != 0)
                 {
                     state -= 1;
                 }

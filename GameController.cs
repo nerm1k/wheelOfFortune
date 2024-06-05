@@ -59,7 +59,7 @@ namespace wheelOfFortune
         {
             wheel.wheelIsMoving = true;
             Random rand = new Random();
-            wheel.numberOfTwists = rand.Next(50, 100);
+            wheel.numberOfTicks = rand.Next(70, 130);
             wheel.wheelTimer.Start();
         }
 
