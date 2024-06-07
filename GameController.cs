@@ -57,10 +57,7 @@ namespace wheelOfFortune
 
         public void StartTurning()
         {
-            wheel.wheelIsMoving = true;
-            Random rand = new Random();
-            wheel.numberOfTicks = rand.Next(70, 130);
-            wheel.wheelTimer.Start();
+            wheel.StartTurning();
         }
 
         public void StartNewGame()
